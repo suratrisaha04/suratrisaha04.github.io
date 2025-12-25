@@ -1,13 +1,372 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-body {
-  background-color: lightblue;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Multiverse Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffcad4;
+      color: #5c3d4d;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    nav {
+      background: #ff7f9c;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      box-shadow: 0 4px 8px rgba(255, 127, 156, 0.3);
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 8px 15px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover,
+    nav a:focus {
+      background-color: #ff577a;
+    }
+    header {
+      max-width: 800px;
+      margin: 50px auto 30px;
+      text-align: center;
+    }
+    header h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-weight: 400;
+      font-size: 1.3rem;
+      color: #7a5362;
+    }
+    main {
+      max-width: 900px;
+      margin: 0 auto 50px;
+      padding: 0 20px;
+      flex-grow: 1;
+    }
+    #introSection {
+      display: flex;
+      background: #ffe7ee;
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 8px 16px rgba(255, 127, 156, 0.15);
+      gap: 30px;
+      align-items: center;
+    }
+    #introSection > div.photo-container {
+      flex-shrink: 0;
+      width: 180px;
+      height: 180px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    #introSection > div.photo-container:hover {
+      border-color: #ff577a;
+    }
+    #introSection img#profilePhoto {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    #introSection > div.text-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    #introSection h2 {
+      color: #d54b7b;
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    #introSection h2.contact-title {
+      font-size: 1.7rem;
+      margin-bottom: 8px;
+    }
+    #introSection p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #6b4759;
+      white-space: pre-wrap;
+    }
+    #introSection a {
+      color: #ff577a;
+      text-decoration: none;
+    }
+    #introSection a:hover {
+      text-decoration: underline;
+    }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+      background: #ffe7ee;
+      border-radius: 25px;
+      padding: 20px;
+      box-shadow: 0 8px 16px rgba(255, 127, 156, 0.15);
+    }
+    .image-gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    footer {
+      background: #ff7f9c;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      user-select: none;
+    }
+    [contenteditable="true"] {
+      outline: 2px dashed #ff577a;
+      background-color: #fff0f6;
+    }
+    #editBtn, #addPhotoBtn {
+      position: fixed;
+      top: 15px;
+      background: #ff577a;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 87, 122, 0.6);
+      z-index: 999;
+      transition: background-color 0.3s ease;
+    }
+    #editBtn:hover, #addPhotoBtn:hover {
+      background-color: #ff2d58;
+    }
+    #editBtn {
+      right: 15px;
+    }
+    #addPhotoBtn {
+      right: 120px;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 2.2rem; }
+      header p { font-size: 1rem; }
+      nav a { font-size: 1rem; margin: 0 10px; padding: 6px 10px; }
+      #introSection {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      #introSection > div.photo-container {
+        width: 140px;
+        height: 140px;
+      }
+      #introSection h2 {
+        font-size: 1.7rem;
+      }
+      #introSection h2.contact-title {
+        font-size: 1.5rem;
+      }
+      main {
+        max-width: 100%;
+        padding: 10px;
+      }
+      #editBtn, #addPhotoBtn {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+      }
+    }
+  </style>
 </head>
+<body>
+
+  <button id="editBtn">Edit</button>
+  <button id="addPhotoBtn">Add Photo</button>
+  <input type="file" id="photoInput" accept="image/*" style="display: none;" />
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="study.html">Study Zone</a>
+    <a href="kpopanime.html">Kpop & Anime</a>
+    <a href="books.html">Book Nook</a>
+    <a href="covers.html">Covers</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+
+  <header>
+    <h1>My Multiverse Blog</h1>
+    <p>A cozy place for study tips, pop culture, and personal thoughts.</p>
+  </header>
+
+  <main>
+    <section id="introSection">
+      <div class="photo-container" title="Click Add Photo button to change this photo">
+        <img id="profilePhoto" src="/Users/rayasaha/Downloads/IMG_0054.jpg" alt="Profile Photo" />
+      </div>
+
+      <div class="text-container">
+  <div>
+    <h2 contenteditable="false">About Me</h2>
+    <p contenteditable="false">
+      Hi! I'm [Your Name], a 9th-grade student passionate about chemistry, math, K-pop, anime, books, and music. This is my personal space where I share study tips, reviews, song covers, and life reflections.
+    </p>
+  </div>
+  <div>
+    <h2 contenteditable="false" class="contact-title">Contact Me</h2>
+    <p contenteditable="false">
+      Email: <a href="mailto:suratrisaharaya04@gmail.com" style="color:#ff577a; text-decoration:none;">suratrisaharaya04@gmail.com</a><br />
+      Instagram: <a href="https://instagram.com/r.1.a.8.y" target="_blank" style="color:#ff577a; text-decoration:none;">@r.1.a.8.y</a>
+    </p>
+  </div>
+</div>
+
+    </section>
+
+    <section>
+      <h2 style="color:#d54b7b; font-weight:700;">Photo Gallery</h2>
+      <div id="imageGallery" class="image-gallery"></div>
+    </section>
+  </main>
+
+  <footer>
+    Made with ♥ by [Your Name]
+  </footer>
+
+  <script>
+    const editBtn = document.getElementById('editBtn');
+    const addPhotoBtn = document.getElementById('addPhotoBtn');
+    const photoInput = document.getElementById('photoInput');
+    const imageGallery = document.getElementById('imageGallery');
+    const profilePhoto = document.getElementById('profilePhoto');
+
+    // Editable selectors - includes intro section titles and paragraphs, nav links, header, footer
+    const editableSelectors = [
+      'main #introSection h2',
+      'main #introSection p',
+      'footer',
+      'header h1',
+      'header p',
+      'nav a'
+    ];
+
+    let isEditing = false;
+
+    // Load saved content and images on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      // Load editable text content
+      editableSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach((el, i) => {
+          const saved = localStorage.getItem(`${selector}-${i}`);
+          if (saved) el.innerHTML = saved;
+        });
+      });
+
+      // Load saved gallery images
+      const savedImages = JSON.parse(localStorage.getItem('galleryImages') || '[]');
+      savedImages.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        imageGallery.appendChild(img);
+      });
+
+      // Load saved profile photo
+      const savedProfilePhoto = localStorage.getItem('profilePhoto');
+      if (savedProfilePhoto) {
+        profilePhoto.src = savedProfilePhoto;
+      }
+    });
+
+    // Toggle edit/save mode
+    editBtn.addEventListener('click', () => {
+      isEditing = !isEditing;
+
+      editableSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
+          el.contentEditable = isEditing;
+        });
+      });
+
+      // Disable link navigation during edit
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link => {
+        if (isEditing) {
+          link.dataset.href = link.getAttribute('href');
+          link.removeAttribute('href');
+        } else if (link.dataset.href) {
+          link.setAttribute('href', link.dataset.href);
+          delete link.dataset.href;
+        }
+      });
+
+      if (!isEditing) {
+        // Save all editable content
+        editableSelectors.forEach(selector => {
+          document.querySelectorAll(selector).forEach((el, i) => {
+            localStorage.setItem(`${selector}-${i}`, el.innerHTML);
+          });
+        });
+        alert('Changes saved! They’ll stay even after refresh.');
+      }
+
+      editBtn.textContent = isEditing ? "Save" : "Edit";
+    });
+
+    // Open file input to add photo(s)
+    addPhotoBtn.addEventListener('click', () => {
+      photoInput.click();
+    });
+
+    // Handle photo uploads
+    photoInput.addEventListener('change', (event) => {
+      const files = event.target.files;
+      const savedImages = JSON.parse(localStorage.getItem('galleryImages') || '[]');
+
+      for (const file of files) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          // Add image to gallery
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          imageGallery.appendChild(img);
+
+          // Save gallery images in localStorage
+          savedImages.push(e.target.result);
+          localStorage.setItem('galleryImages', JSON.stringify(savedImages));
+
+          // Update profile photo with the first uploaded image
+          if (!localStorage.getItem('profilePhoto')) {
+            profilePhoto.src = e.target.result;
+            localStorage.setItem('profilePhoto', e.target.result);
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+
+      photoInput.value = '';
+    });
+  </script>
+
+</body>
 </html>
-
-
-
