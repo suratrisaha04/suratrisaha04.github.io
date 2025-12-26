@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Multiverse Blog - Kpop & Anime</title>
+  <style>
+    /* Same styles as others */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #ffe6f0;
+      color: #4a2c48;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    nav {
+      background-color: #ff99cc;
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
+      box-shadow: 0 2px 6px rgba(255, 105, 180, 0.3);
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1.25rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      padding: 0.4rem 0.8rem;
+      border-radius: 10px;
+    }
+    nav a:hover, nav a:focus {
+      background-color: #ff66a3; color: #fff;
+    }
+    header {
+      max-width: 800px;
+      margin: 3rem auto 2rem auto;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    header h1 {
+      font-size: 2.8rem; font-weight: 700; margin-bottom: 0.3rem; letter-spacing: 0.04em;
+    }
+    header p {
+      font-size: 1.15rem; color: #7a4965; margin-top: 0.3rem;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 800px;
+      margin: 0 auto 3rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      background: #fff0f6;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 6px 12px rgba(255, 105, 180, 0.15);
+    }
+    section h2 {
+      color: #cc4f8e;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 0.02em;
+    }
+    section p {
+      font-size: 1rem;
+      color: #5b3b50;
+      line-height: 1.5;
+    }
+    footer {
+      background-color: #ff99cc;
+      color: white;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      user-select: none;
+    }
+    @media (max-width: 600px) {
+      nav a {
+        margin: 0 0.7rem; font-size: 1rem; padding: 0.35rem 0.6rem;
+      }
+      header h1 {
+        font-size: 2.2rem;
+      }
+      section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="study.html">Study Zone</a>
+    <a href="kpopanime.html">Kpop & Anime</a>
+    <a href="books.html">Book Nook</a>
+    <a href="covers.html">Covers</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+
+  <header>
+    <h1>Kpop & Anime</h1>
+    <p>Thoughts on favorite groups, anime, comebacks, and more.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Kpop Highlights</h2>
+      <p>Reviews of recent comebacks, favorite groups, and song meanings.</p>
+    </section>
+
+    <section>
+      <h2>Anime Corner</h2>
+      <p>Anime reviews, top characters, and series recommendations.</p>
+    </section>
+  </main>
+
+  <footer>
+    Made with &hearts; by [Your Name]
+  </footer>
+
+</body>
+</html>
+  <h1>Kpop & Anime</h1>

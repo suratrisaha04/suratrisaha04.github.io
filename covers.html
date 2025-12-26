@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Multiverse Blog - Music Covers</title>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffcad4;
+      color: #5c3d4d;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      background: #ff7f9c;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      box-shadow: 0 4px 8px rgba(255, 127, 156, 0.3);
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 0 20px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      background-color: #ff577a;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin: 40px 0 20px;
+    }
+
+    .video-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 20px;
+    }
+
+    .video-item {
+      width: 280px;
+      text-align: center;
+      position: relative;
+    }
+
+    .video-item img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .video-title {
+      margin-top: 10px;
+      font-weight: 600;
+      color: #5c3d4d;
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #ff2d58;
+      border: none;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    footer {
+      background: #ff7f9c;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .add-video-section {
+      text-align: center;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .add-video-section input {
+      padding: 10px;
+      margin: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 200px;
+    }
+
+    #addVideoBtn {
+      padding: 10px 16px;
+      margin-top: 10px;
+      background-color: #ff577a;
+      color: white;
+      border: none;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 87, 122, 0.6);
+    }
+
+    #addVideoBtn:hover {
+      background-color: #ff2d58;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .video-item {
+        width: 90%;
+      }
+
+      nav a {
+        font-size: 1rem;
+        margin: 0 12px;
+        padding: 6px 12px;
+      }
+    }
+  </style>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="study.html">Study Zone</a>
+    <a href="kpopanime.html">Kpop & Anime</a>
+    <a href="books.html">Book Nook</a>
+    <a href="covers.html">Covers</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+
+  <h1>My Music Covers</h1>
+
+  <div class="video-gallery" id="videoGallery">
+    <!-- Videos will be inserted here -->
+  </div>
+
+  <div class="add-video-section">
+    <input type="text" id="videoId" placeholder="YouTube Video ID" />
+    <input type="text" id="videoTitle" placeholder="Video Title" />
+    <br />
+    <button id="addVideoBtn">Add Video</button>
+  </div>
+
+  <footer>
+    Made with &hearts; by [Your Name]
+  </footer>
+
+  <script>
+    function loadVideos() {
+      const gallery = document.getElementById('videoGallery');
+      gallery.innerHTML = '';
+
+      let videoData = JSON.parse(localStorage.getItem('myVideos')) || [];
+
+      videoData.forEach((video, index) => {
+        const thumbnailURL = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
+
+        const videoDiv = document.createElement('div');
+        videoDiv.className = 'video-item';
+
+        videoDiv.innerHTML = `
+          <button class="delete-btn" data-index="${index}">✕</button>
+          <a href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noopener noreferrer" title="${video.title}">
+            <img src="${thumbnailURL}" alt="${video.title} thumbnail" />
+            <div class="video-title">${video.title}</div>
+          </a>
+        `;
+        gallery.appendChild(videoDiv);
+      });
+
+      // Set delete button actions
+      document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const index = parseInt(this.getAttribute('data-index'));
+          let currentVideos = JSON.parse(localStorage.getItem('myVideos')) || [];
+          currentVideos.splice(index, 1); // Remove video at index
+          localStorage.setItem('myVideos', JSON.stringify(currentVideos));
+          loadVideos(); // Reload
+        });
+      });
+    }
+
+    document.getElementById('addVideoBtn').addEventListener('click', () => {
+      const id = document.getElementById('videoId').value.trim();
+      const title = document.getElementById('videoTitle').value.trim();
+
+      if (!id || !title) {
+        alert('Please fill in both fields!');
+        return;
+      }
+
+      const currentVideos = JSON.parse(localStorage.getItem('myVideos')) || [];
+      currentVideos.push({ id: id, title: title });
+      localStorage.setItem('myVideos', JSON.stringify(currentVideos));
+
+      document.getElementById('videoId').value = '';
+      document.getElementById('videoTitle').value = '';
+      loadVideos();
+    });
+
+    window.onload = loadVideos;
+  </script>
+
+</body>
+</html>

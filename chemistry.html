@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chemistry Study Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #ffe7ee; /* lighter pink */
+      color: #4a4a4a;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      background-color: #ff7f9c; /* soft pink */
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
+      box-shadow: 0 2px 6px rgba(255, 127, 156, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a,
+    .dropdown {
+      color: white;
+      text-decoration: none;
+      margin: 0 1.25rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      padding: 0.4rem 0.8rem;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    nav a:hover,
+    .dropdown:hover > a {
+      background-color: #ff577a; /* deeper pink */
+      color: #fff;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #fff0f6; /* very pale pink */
+      box-shadow: 0 8px 16px rgba(255, 127, 156, 0.3);
+      border-radius: 10px;
+      min-width: 180px;
+      z-index: 999;
+      text-align: center;
+    }
+
+    .dropdown-content a {
+      display: block;
+      color: #5c3d4d; /* muted dark pink */
+      padding: 12px 16px;
+      text-decoration: none;
+      border-bottom: 1px solid #ffcad4;
+      font-weight: bold;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ffcad4; /* light pink */
+      color: #5c3d4d;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    header {
+      max-width: 800px;
+      margin: 3rem auto 2rem auto;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #d54b7b; /* medium pink */
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto 3rem auto;
+      padding: 0 1rem;
+    }
+
+    .topic {
+      margin-bottom: 1.5rem;
+      border: 2px dashed #ffcad4; /* pale pink border */
+      border-radius: 10px;
+      background-color: #fff0f6; /* very pale pink */
+      transition: box-shadow 0.3s ease;
+    }
+
+    .topic summary {
+      font-size: 1.3rem;
+      font-weight: 700;
+      padding: 1rem;
+      cursor: pointer;
+      background-color: #ff7f9c; /* soft pink */
+      border-radius: 10px 10px 0 0;
+      user-select: none;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    .topic summary:hover {
+      background-color: #ff577a; /* deeper pink */
+    }
+
+    .topic[open] summary {
+      border-bottom: 2px solid #ffcad4;
+    }
+
+    .note-content {
+      padding: 1rem;
+      color: #4a4a4a;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      min-height: 80px;
+    }
+
+    .note-content img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ffcad4;
+    }
+
+    [contenteditable="true"] {
+      outline: 2px dashed #ff577a;
+      background-color: #fff0f6;
+    }
+
+    #editBtn {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: #ff7f9c; /* soft pink */
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 127, 156, 0.6);
+      z-index: 999;
+      transition: background-color 0.3s ease;
+    }
+
+    #editBtn:hover {
+      background-color: #ff577a; /* deeper pink */
+    }
+
+    footer {
+      background-color: #ff7f9c; /* soft pink */
+      color: white;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      margin-top: auto;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="editBtn">Edit</button>
+
+  <!-- Top Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <div class="dropdown">
+      <a href="study.html">Study Zone</a>
+      <div class="dropdown-content">
+        <a href="chemistry.html">Chemistry</a>
+        <a href="math.html">Math Tricks</a>
+        <a href="exam-tips.html">Exam Tips</a>
+      </div>
+    </div>
+    <a href="kpopanime.html">Kpop & Anime</a>
+    <a href="books.html">Book Nook</a>
+    <a href="covers.html">Covers</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+
+  <header>
+    <h1 contenteditable="false">Chemistry Study Page</h1>
+  </header>
+
+  <main>
+    <details class="topic" open>
+      <summary>Atomic Structure</summary>
+      <div
+        class="note-content"
+        contenteditable="false"
+        data-key="note-atomic-structure"
+      >
+        <p>
+          Write your own explanation, add bullet points, formulas, or even
+          images here!
+        </p>
+        <p>You can include diagrams like this:</p>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Bohr_atom_model.svg/640px-Bohr_atom_model.svg.png"
+          alt="Bohr Model"
+        />
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary>Periodic Table Notes</summary>
+      <div
+        class="note-content"
+        contenteditable="false"
+        data-key="note-periodic-table"
+      >
+        <p>Elements are arranged by increasing atomic number.</p>
+        <p>
+          Groups = vertical columns → same number of outer electrons = similar
+          chemical properties!
+        </p>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary>Bonding</summary>
+      <div class="note-content" contenteditable="false" data-key="note-bonding">
+        <p>Covalent = share electrons, Ionic = transfer electrons.</p>
+        <p>You can add images of electron dot structures or notes.</p>
+      </div>
+    </details>
+  </main>
+
+  <footer contenteditable="false">Made with 💗 by Suratri Saha</footer>
+
+  <script>
+    const editBtn = document.getElementById("editBtn");
+    let isEditing = false;
+
+    // On page load, restore saved notes content
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".note-content").forEach((noteDiv) => {
+        const key = noteDiv.dataset.key;
+        const saved = localStorage.getItem(key);
+        if (saved) {
+          noteDiv.innerHTML = saved;
+        }
+      });
+    });
+
+    editBtn.addEventListener("click", () => {
+      isEditing = !isEditing;
+
+      document.querySelectorAll(".note-content").forEach((el) => {
+        el.contentEditable = isEditing ? "true" : "false";
+        if (!isEditing) {
+          // Save content when editing ends
+          const key = el.dataset.key;
+          localStorage.setItem(key, el.innerHTML);
+        }
+      });
+
+      editBtn.textContent = isEditing ? "Save" : "Edit";
+
+      if (!isEditing) {
+        alert("Your changes are saved locally and will persist after refresh.");
+      }
+    });
+  </script>
+</body>
+</html>

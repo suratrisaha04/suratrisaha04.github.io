@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Multiverse Blog - Kpop & Anime</title>
+  <style>
+    /* Same styles as others */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #ffe6f0;
+      color: #4a2c48;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    nav {
+      background-color: #ff99cc;
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
+      box-shadow: 0 2px 6px rgba(255, 105, 180, 0.3);
+      position: sticky; top: 0; z-index: 100;
+      gap: 1rem;
+      align-items: center; /* Vertical center nav items */
+    }
+    nav a,
+    .dropbtn {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      padding: 0.4rem 0.8rem;
+      border-radius: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      vertical-align: middle;
+      line-height: 1.5;
+    }
+    nav a:hover,
+    .dropbtn:hover {
+      background-color: #ff66a3;
+      color: #fff;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #ff99cc;
+      min-width: 160px;
+      top: 100%;
+      left: 0;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(255, 105, 180, 0.2);
+      z-index: 200;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 0.6rem 1rem;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .dropdown-content a:hover {
+      background-color: #ff66a3;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    header {
+      max-width: 800px;
+      margin: 3rem auto 2rem auto;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.04em;
+    }
+    header p {
+      font-size: 1.15rem;
+      color: #7a4965;
+      margin-top: 0.3rem;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 800px;
+      margin: 0 auto 3rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      background: #fff0f6;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 6px 12px rgba(255, 105, 180, 0.15);
+    }
+    section h2 {
+      color: #cc4f8e;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 0.02em;
+    }
+    section p {
+      font-size: 1rem;
+      color: #5b3b50;
+      line-height: 1.5;
+    }
+    footer {
+      background-color: #ff99cc;
+      color: white;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      user-select: none;
+    }
+
+    /* Editable highlight */
+    [contenteditable="true"] {
+      outline: 2px dashed #ff577a;
+      background-color: #fff0f6;
+    }
+    /* Edit button styles */
+    #editBtn {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: #ff577a;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 87, 122, 0.6);
+      z-index: 999;
+      transition: background-color 0.3s ease;
+    }
+    #editBtn:hover {
+      background-color: #ff2d58;
+    }
+    @media (max-width: 600px) {
+      nav a,
+      .dropbtn {
+        margin: 0 0.7rem;
+        font-size: 1rem;
+        padding: 0.35rem 0.6rem;
+      }
+      header h1 {
+        font-size: 2.2rem;
+      }
+      section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button id="editBtn">Edit</button>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="study.html">Study Zone</a>
+
+    <div class="dropdown">
+      <button class="dropbtn">Kpop & Anime</button>
+      <div class="dropdown-content">
+        <a href="kpop.html">Kpop</a>
+        <a href="kdrama.html">Kdrama</a>
+        <a href="anime.html">Anime</a>
+      </div>
+    </div>
+
+    <a href="books.html">Book Nook</a>
+    <a href="covers.html">Covers</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+
+  <header>
+    <h1 contenteditable="false">Kpop & Anime</h1>
+    <p contenteditable="false">Thoughts on favorite groups, anime, comebacks, and more.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2 contenteditable="false">Kpop Highlights</h2>
+      <p contenteditable="false">Reviews of recent comebacks, favorite groups, and song meanings.</p>
+    </section>
+
+    <section>
+      <h2 contenteditable="false">Anime Corner</h2>
+      <p contenteditable="false">Anime reviews, top characters, and series recommendations.</p>
+    </section>
+  </main>
+
+  <footer contenteditable="false">
+    Made with &hearts; by [Your Name]
+  </footer>
+
+<script>
+  const editBtn = document.getElementById('editBtn');
+  let isEditing = false;
+
+  editBtn.addEventListener('click', () => {
+    isEditing = !isEditing;
+
+    // Toggle contenteditable on target elements
+    document.querySelectorAll('header h1, header p, main section h2, main section p, footer').forEach(el => {
+      el.contentEditable = isEditing ? "true" : "false";
+    });
+
+    // Change button text
+    editBtn.textContent = isEditing ? "Save" : "Edit";
+
+    if (!isEditing) {
+      alert('Changes will be lost on page refresh (no permanent save yet).');
+    }
+  });
+</script>
+
+</body>
+</html>

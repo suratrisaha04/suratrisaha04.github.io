@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Multiverse Blog - Book Nook</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffcad4; /* soft pink */
+      color: #5c3d4d; /* dark plum */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    nav {
+      background: #ff7f9c;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      box-shadow: 0 4px 8px rgba(255, 127, 156, 0.3);
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 0 20px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover,
+    nav a:focus {
+      background-color: #ff577a;
+    }
+    header {
+      max-width: 800px;
+      margin: 50px auto 30px;
+      text-align: center;
+    }
+    header h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-weight: 400;
+      font-size: 1.3rem;
+      color: #7a5362;
+    }
+    main {
+      max-width: 800px;
+      margin: 0 auto 50px;
+      background: #ffe7ee;
+      border-radius: 25px;
+      padding: 40px 30px;
+      box-shadow: 0 8px 16px rgba(255, 127, 156, 0.15);
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    section h2 {
+      color: #d54b7b;
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 15px;
+      letter-spacing: 0.02em;
+    }
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #6b4759;
+    }
+    footer {
+      background: #ff7f9c;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      user-select: none;
+    }
+    /* Editable highlight */
+    [contenteditable="true"] {
+      outline: 2px dashed #ff577a;
+      background-color: #fff0f6;
+    }
+    /* Edit button styles */
+    #editBtn {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: #ff577a;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 87, 122, 0.6);
+      z-index: 999;
+      transition: background-color 0.3s ease;
+    }
+    #editBtn:hover {
+      background-color: #ff2d58;
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      nav a {
+        font-size: 1rem;
+        margin: 0 12px;
+        padding: 6px 12px;
+      }
+      main {
+        padding: 25px 15px;
+        border-radius: 18px;
+        margin-bottom: 30px;
+      }
+      section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+      section p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+  <!-- Google font Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <button id="editBtn">Edit</button>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="study.html">Study Zone</a>
+    <a href="kpopanime.html">Kpop & Anime</a>
+    <a href="books.html">Book Nook</a>
+    <a href="covers.html">Covers</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+
+  <header>
+    <h1>Book Nook</h1>
+    <p>My favorite books, reviews, and reading reflections.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2 contenteditable="false">Books I Love</h2>
+      <p contenteditable="false">I read a lot of books and love sharing summaries, reviews, and recommendations here.</p>
+    </section>
+    <section>
+      <h2 contenteditable="false">Reading Tips</h2>
+      <p contenteditable="false">How to find time to read, how to remember what you read, and book organizing ideas.</p>
+    </section>
+  </main>
+
+  <footer contenteditable="false">
+    Made with &hearts; by [Your Name]
+  </footer>
+
+<script>
+  const editBtn = document.getElementById('editBtn');
+  let isEditing = false;
+
+  editBtn.addEventListener('click', () => {
+    isEditing = !isEditing;
+
+    // Toggle contenteditable on selected elements
+    document.querySelectorAll('main section h2, main section p, footer').forEach(el => {
+      el.contentEditable = isEditing ? "true" : "false";
+    });
+
+    // Change button text
+    editBtn.textContent = isEditing ? "Save" : "Edit";
+
+    // If saving, optionally alert or do something
+    if (!isEditing) {
+      alert('Changes will be lost on page refresh (no permanent save yet).');
+    }
+  });
+</script>
+
+</body>
+</html>
